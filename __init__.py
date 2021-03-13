@@ -23,7 +23,12 @@ def create_app(test_config=None):
 
     # Initialize the core application.
     app = Flask(__name__)
-    app.config.from_pyfile('config.py', silent=True)
+
+    # Configure application.
+    #app.config.from_pyfile('config.py', silent=True)
+    app.config.from_envvar('SECRET_KEY')
+    app.config.from_envvar('SQLALCHEMY_DATABASE_URI')
+    app.config.from_envvar('SQLALCHEMY_TRACK_MODIFICATIONS')
     
     # Imports
     import models
