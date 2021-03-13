@@ -21,9 +21,9 @@ def create_app(test_config=None):
     application instance and allows for integration of blueprints and easier
     deployment to a web server.  Conifgs are in config.py under the instance folder.
     """
-    from . import config
+    
     app = Flask(__name__)#, instance_relative_config=True) # means config.py file is under the instance folder.
-    app.config.from_object('config')
+    app.config.from_pyfile('config.py', silent=True)
     #app.config.from_mapping(
     #    SECRET_KEY='dev',
     #    DATABASE=os.path.join(app.instance_path, 'app.sqlite'),
