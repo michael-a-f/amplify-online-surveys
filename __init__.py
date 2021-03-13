@@ -26,9 +26,9 @@ def create_app(test_config=None):
     app.config.from_pyfile('config.py', silent=True)
     
     # Imports
-    from . import models
-    from . import decorators
-    from . import forms
+    import models
+    import decorators
+    import forms
 
 
     # Define a user_loader callback for the LoginManager instance.
