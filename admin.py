@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
-from app.decorators import *
-from app.models import *
+from decorators import *
+from models import *
 
 
 bp = Blueprint('admin', __name__, url_prefix='/admin')

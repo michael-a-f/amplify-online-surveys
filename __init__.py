@@ -2,8 +2,8 @@ import os
 from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
-from app.decorators import *
-from app.models import *
+from decorators import *
+from models import *
 
 
 

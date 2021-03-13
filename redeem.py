@@ -1,8 +1,8 @@
 from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
 from flask_login import current_user
-from app.decorators import *
+from decorators import *
 from forms import IncentiveRedemption
-from app.models import *
+from models import *
 
 
 bp = Blueprint('redeem', __name__, url_prefix='/redeem')
