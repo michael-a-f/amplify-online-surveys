@@ -44,6 +44,7 @@ def create_app(test_config=None):
     #from . import db
     db.init_app(app)
     
+    from . import models # added this to try to fix imports
     @login_manager.user_loader
     def load_user(unicode_user_id):
         """Intakes a unicode user_id and returns a User object for the panelist
