@@ -25,7 +25,7 @@ class Panelist(UserMixin, db.Model):
     # registration.  The rest gets updated after already registered.
     panelist_id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(64), nullable=False)
+    password = db.Column(db.String(140), nullable=False)
     firstname = db.Column(db.String(64))
     lastname = db.Column(db.String(64))
     dob = db.Column(db.String(64))
