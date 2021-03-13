@@ -54,22 +54,22 @@ def create_app(test_config=None):
     db.init_app(app)
 
     # Register Blueprints
-    from . import auth
+    import auth
     app.register_blueprint(auth.bp)
 
-    from . import ask
+    import ask
     app.register_blueprint(ask.bp)
 
-    from . import answer
+    import answer
     app.register_blueprint(answer.bp)
 
-    from . import redeem
+    import redeem
     app.register_blueprint(redeem.bp)
 
-    from . import other_views
+    import other_views
     app.register_blueprint(other_views.bp)
     
-    from . import admin
+    import admin
     app.register_blueprint(admin.bp)
 
 
