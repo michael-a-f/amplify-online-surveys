@@ -1,7 +1,7 @@
 from functools import wraps
 from flask import g, request, redirect, url_for
 from flask_login import current_user
-from app.models import Panelist
+from models import Panelist
 
 # This is used as a decorator function for the views.  A view with 
 # 'login_required' decorator will only get displayed if a user is logged in.

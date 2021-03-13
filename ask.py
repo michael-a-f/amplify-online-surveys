@@ -1,8 +1,8 @@
 from flask import Blueprint, flash, g, redirect, render_template, request, session, url_for
 from flask_login import current_user
-from app.decorators import *
-from app.forms import MultiCheckboxField, SurveyDetailsForm, SurveyContentForm
-from app.models import *
+from decorators import *
+from forms import MultiCheckboxField, SurveyDetailsForm, SurveyContentForm
+from models import *
 
 
 bp = Blueprint('ask', __name__, url_prefix='/ask')
