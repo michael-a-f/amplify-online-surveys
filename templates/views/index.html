@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type='text/css' href="/static/css/main.css"/>
+    <link rel="icon" href="\static\images\talking head.png">
+    <title>AMPLIFY - Ask, Answer, Earn</title>
+</head>
+
+<body class='index-register-login-page'>
+    <!--Class on Body to avoid this-->
+        <div class='header' id='register-header'>
+            <div class='header-logo'>
+                <img class ='header-logo-img' src="\static\images\a.png" alt="talking head">
+                <h4>AMPLIFY</h4>
+            </div>
+
+            <div class='toolbar' id='register-toolbar'>
+                <ul>
+                    <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+                    <li><a href="{{ url_for('auth.login') }}">Sign In</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class='page-container' id='register-page'>
+            
+            <div class='registration-message'>
+
+                <div class='signup-message'>
+                    <h1>Be Heard.  Share your voice.</h1>
+                    <h2>Connect your thoughts with some of the world's<br>most influential brands.  And get paid for it.</h2>
+                    <h3>Ready to start?  Enter your email to create your account.</h3>
+                </div>
+
+                <form class='get-started' method='POST'>
+                    <div class='get-started-item'>
+                        <input type='email' name="email" id="email" placeholder="Email Address">
+                    </div>
+                    
+                    <div class='get-started-item'>
+                        <input id='get-started-button' type="submit" value="Get Started">  
+                    </div> 
+                </form>
+
+            </div>
+
+            
+        </div>
+    <div class='how-it-works'>
+        
+        <div id='step-1'>
+            <div class='step-description'>
+                <h1>Tell us a little about yourself</h1>
+                <h2>We use your age, gender, race, and region to connect you with the surveys that want to hear from your demographic.</h2>
+            </div>
+            <div class='step-image'>
+                <img class ='step-img' src="\static\images\info.png" alt="">
+            </div>
+        </div>
+
+        <div id='step-2'>
+            <div class='step-description'>
+                <h1>Complete short surveys to earn points</h1>
+                <h2>Our surveys are quick, straightforward, and help influence ad campaigns and new product direction at companies like Nike, Google, and Target.</h2>              
+            </div>
+            <div class='step-image'>
+                <img class ='step-img' src="\static\images\survey.png" alt="">
+            </div>
+        </div>
+
+        <div id='step-3'>
+            <div class='step-description'>
+                <h1>Redeem these points for rewards</h1>
+                <h2>We know your time is not free.  We currently offer giftcards, bank transfers, and online payments in a quick, easy, secure transaction.</h2>
+            </div>
+
+            <div class='step-image'>
+                <img class='step-img' src="\static\images\paid.png" alt="">
+            </div>
+        </div>
+
+        <div id='step-4'>
+            <div class='step-description'>
+                <h2>Ready to start?  Enter your email to create your account and start sharing your voice.</h2>
+            </div>
+
+            <div class='step-image'><!--ID-->
+                <form class='get-started' method='POST'>
+                    <div class='get-started-item'>
+                        <input type='email' name="email" id="email" placeholder="Email Address">
+                    </div>
+                    
+                    <div class='get-started-item'>
+                        <input id='get-started-button' type="submit" value="Get Started">  
+                    </div> 
+                </form>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

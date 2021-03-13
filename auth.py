@@ -1,9 +1,10 @@
 from flask import Blueprint, flash, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
-from app.db_helpers import *
 from flask_login import current_user, login_user, logout_user
-from app.user import User
-from app.forms import RegistrationForm, PanelistDetailsForm
+from app.forms import RegistrationForm, PanelistDetailsForm, PanelistLoginForm
+from app.models import Panelist
+from app.__init__ import db
+
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -24,27 +25,37 @@ def register():
         there is not, then the email and the hashed password are inserted and
         commited into the Panelists table.
         """
-    # TODO: The panelist's email is entered into the session, and then this
-    # is used in the update query to define which panelist row to update.  I
-    # believe this will be better handled by calling lastrowid method/attribute
-    # of cursor object 'DB' there. Probably not great to use session data.
+
+    # TODO: Probably not great to use session data.
+
     form = RegistrationForm(request.form)
+
     if request.method == 'POST' and form.validate():
+        # Assign form data to variables.
         email = form.email.data
         password = form.password.data
         confirm_password = form.confirm_password.data
-        db = get_db()
-        error = None
-        if db.execute('SELECT panelist_id FROM Panelists WHERE email = ?', (email,)).fetchone() is not None:
+
+        # check to see if there exists a user with the given email.
+        # Flash error if so, and create a user with that email if not.
+        user_to_register = Panelist.query.filter_by(email=email).first()
+        if user_to_register:
             error = 'User {} is already registered.'.format(email)
         else:
-            db.execute('INSERT INTO Panelists (email, password) VALUES (?, ?)', (email, generate_password_hash(password)))
-            db.commit()
-            session.clear()
+            # DO NOT STORE ACTUAL PASSWORD, INSTEAD STORE HASHED PASSWORD.
+            user_to_register = Panelist(email=email, password=generate_password_hash(password))
+            db.session.add(user_to_register)
+            db.session.commit()
+
+            # This part is sketchy. Store email in session so that it can
+            # be accessed to run a query in the next page.
             session['email'] = email
             return redirect(url_for('auth.details'))
+        
         flash(error)
     
+    # Pre-populate the form with the email in session if the user entered their
+    # email into the input on the index page.
     form.email.data = session['email']
     return render_template('auth/register.html', form=form)
 
@@ -58,39 +69,49 @@ def details():
 
     On GET request:
         Display HTML template with the PanelistDetailsForm.
+        Display the email, firstname, and lastname of the panelist to update.
 
     On POST Request:
-        Validate the form inputs and update the Panelist row with the given
-        information.
-        Query the Panelist table to get the full row for the panelist and log
-        them in by creating a User object with their panelist row and then
-        passing that User object to the login_user method of flask-login.
-        """
+        Validate and request the form inputs.
+        Query to get the panelist to update using session email.
+        Update the fields of that panelist.
+        Merge updated fields to the session.
+        Commit session changes.
+        Redirect to admin page to determine if it worked.
+
+        TODO:Login the user and redirect to home.
+    """
 
     # TODO: Use the lastrowid method/attribute of the db cursor object as the
     # way to designate the panelist_id to update.
 
     form = PanelistDetailsForm(request.form)
-    if request.method == 'POST' and form.validate():
-        firstname = form.firstname.data
-        lastname = form.lastname.data
-        dob = form.dob.data
-        race = form.race.data
-        gender = form.gender.data
-        region = form.region.data
-        panelist_to_update = session['email']
-        
-        db = get_db()
-        db.execute('UPDATE Panelists SET firstname = ?, lastname = ?, dob = ?, race = ?, gender = ?, region = ? WHERE email = ?',
-                    (firstname, lastname, dob, race, gender, region, panelist_to_update))
-        db.commit()
 
-        panelist_to_login = db.execute('SELECT * FROM Panelists WHERE email = ?', (panelist_to_update,)).fetchone()
+    # This is the sketchy part.  Query the DB using session data.
+    panelist_to_update = Panelist.query.filter_by(email=session['email']).first()
+
+    if request.method == 'POST' and form.validate():
+        # Assign form data to the panelist attributes.
+        panelist_to_update.firstname = form.firstname.data
+        panelist_to_update.lastname = form.lastname.data
+        panelist_to_update.dob = form.dob.data
+        panelist_to_update.race = form.race.data
+        panelist_to_update.gender = form.gender.data
+        panelist_to_update.region = form.region.data
+
+        # Need to merge so that the attribute values are written to the DB.
+        db.session.merge(panelist_to_update)
+        db.session.commit()
+
+        # Query to get the same panelist object and pass it into Flask-Login's
+        # login_user function to log that user in.
+        panelist_to_login = Panelist.query.filter_by(email=session['email']).first()
+        login_user(panelist_to_login)
         
-        login_user(User(panelist_to_login))
-        return redirect(url_for('views.home'))
-            
-    return render_template('auth/details.html', form=form)
+        # Redirect to the home page.
+        return redirect(url_for('other_views.home'))
+    
+    return render_template('auth/details.html', form=form, panelist_to_update=panelist_to_update)
 
 
 @bp.route('/login/', methods=(['GET', 'POST']))
@@ -108,26 +129,34 @@ def login():
            login_user().  Then redirect to the home page.
     """
 
-    if request.method == 'POST':
-        username = request.form['email']
-        password = request.form['password']
+    form = PanelistLoginForm(request.form)
 
-        db = get_db()
+    if request.method == 'POST' and form.validate():
+        # Assign form data to variables
+        email = form.email.data
+        password = form.password.data
+
+        # Get the panelist with the given email.  If none or the password is 
+        # incorrect, flash error.
+        panelist_to_login = Panelist.query.filter_by(email=email).first()
         error = None
-        panelist_to_login = db.execute('SELECT * FROM Panelists WHERE email = ?', (username,)).fetchone()
 
         if panelist_to_login is None:
             error = 'Incorrect username or password.'
-        elif not check_password_hash(panelist_to_login['password'], password):
+        
+        # Use Werkzeug functions to use hashing since we never 
+        # saved the actual password text.
+        elif not check_password_hash(panelist_to_login.password, password):
             error = 'Incorrect username or password.'
         elif error is None:
             session.clear()
-            login_user(User(panelist_to_login))
-            return redirect(url_for('views.home'))
+            # Log the user in and redirect to home page.
+            login_user(panelist_to_login)
+            return redirect(url_for('other_views.home'))
 
         flash(error)
 
-    return render_template('auth/login.html')
+    return render_template('auth/login.html', form=form)
 
 
 @bp.route('/logout/')
@@ -135,6 +164,8 @@ def logout():
     """This will always be a GET request to clear session, logout_user(), and
     redirect to the landing page"""
 
+    # Clear the session and use Flask-Login's logout_user.
+    # Redirect to the landing page.
     session.clear()
     logout_user()
-    return redirect(url_for('views.index'))
+    return redirect(url_for('other_views.index'))

@@ -1,6 +1,7 @@
-from app.db_helpers import *
 from flask import Blueprint, render_template
-from app.decorators import login_required
+from app.decorators import *
+from app.models import *
+
 
 bp = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -12,11 +13,13 @@ def admin():
     and the Juntion tables for survey_races, survey_genders,
     and survey_regions.
     """
-    
-    panelists = query('SELECT * FROM Panelists').fetchall()
-    surveys = query('SELECT * FROM Surveys').fetchall()
-    genders = query('SELECT * FROM survey_genders').fetchall()
-    races = query('SELECT * FROM survey_races').fetchall()
-    regions = query('SELECT * FROM survey_regions').fetchall()
+    panelists = Panelist.query.all()
+    surveys = Survey.query.all()
+    genders = Gender.query.all()
+    races = Race.query.all()
+    regions = Region.query.all()
+    questions = Question.query.all()
+    answers = Answer.query.all()
+    responses = Response.query.all()
 
-    return render_template('admin/admintables.html', panelists=panelists, surveys=surveys, genders=genders, races=races, regions=regions)
+    return render_template('admin/admintables.html', panelists=panelists, surveys=surveys, genders=genders, races=races, regions=regions, questions=questions, answers=answers, responses=responses)

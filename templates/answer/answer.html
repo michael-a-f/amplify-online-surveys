@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>{{ current_survey.title }} - AMPLIFY</title>
+{% endblock %}
+
+{% block body %}
+
+    <div class='page-box-header' id='answer-survey-page'>
+        <div class='header-left'>
+            <h1>{{ current_survey.title }}</h1>
+            <h2>{{ current_survey.description }}</h2>
+        </div>
+
+        <div class='header-right'>
+            <div class='survey-icons' id='survey-time'>
+                <img class='time-points-icon' src="\static\images\clock3.png" alt="clock">
+                <h3>{{ current_survey.num_questions }} Questions</h3>
+            </div>
+
+            <div class='survey-icons' id='survey-reward'>
+                <img class='time-points-icon' src="\static\images\star6.png" alt="points">
+                <h3>{{ current_survey.point_value }} Points</h3>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <div class='page-box-main-content' id='questionbank-main'>
+        
+        <form class='survey-sheet' method="POST">
+            {{ form.csrf_token() }}
+            {% for id in list_of_attributes %}
+            <div class='question-box'>
+                <div class='question'>
+                    
+                    <p>{{ form[id].label }}</p>
+                    
+                </div>
+
+                <div class='answers'>
+                    <ul>
+                        {% for radio in form[id] %}
+                        <li>{{ radio }} {{ radio.label }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+            <input type="submit" value="Submit My Responses" class='create-submit-button'>
+        </form>
+    </div>
+
+{% endblock %}

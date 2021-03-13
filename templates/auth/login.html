@@ -1,0 +1,56 @@
+
+{% extends 'auth/auth_base.html' %}
+
+{% block head %}
+<title>Log In - AMPLIFY</title>
+{% endblock %}
+
+{% block body %}
+
+<div class='register-login-box' id='login-box'><!--Change class name since this is shared with the register as well-->
+            
+    <div class='box-title'>
+        <h4>Sign In</h4>
+    </div>
+
+    <form class='register-login-form' id='login-form' method="POST">
+        <div class='error-box'>
+            {% if form.errors %}
+              <ul class="errors">
+                {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+                    {% for error in field_errors %}
+                      <li>{{ form[field_name].label }}: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+              </ul>
+            {% endif %}
+        </div>
+
+        <div class='inputs'>
+            <div class='input-point'>
+              {{ form.email.label }}
+              {{ form.email(class="input-bar") }}
+            </div>
+      
+            <div class='input-point'>
+              {{ form.password.label }}
+              {{ form.password(class="input-bar") }}
+            </div>
+
+            <div class='input-point'>
+                <input type="checkbox">
+                <h5 id='remember-me-text'>Remember Me</h5>
+            </div>
+
+            <input class='register-login-button' type='submit' value='Sign In'>
+        </div>
+    </form>
+
+    <div id='below-login'>
+            <h5 id='new'>New to Amplify?</h5><!--ID-->
+            <h5 id='sign-me-up'>Sign up now.</h5><!--ID-->
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,1428 @@
+/* USING CHROME, MUST RELOAD PAGE USING CTRL+SHIFT+R WHEN REFRESHING CSS CHANGES SINCE STYLESHEET GETS CACHED*/
+
+
+/* ----------------------------------------------------------Global Divs------------------------------------------------------------ */
+
+body {
+    background: #FFFFFF;
+    background: -webkit-linear-gradient(bottom, #EAEDED, #000000);
+    background: -moz-linear-gradient(bottom, #EAEDED, #000000);
+    background: linear-gradient(to top, #EAEDED, #000000);
+    margin: 0px;
+  }
+
+.main-content {
+    
+    
+}
+
+.page-container {
+    
+    margin: auto 4%;
+    padding: 50px;
+    background-color: transparent;
+    
+}
+
+.page-box{
+    border: 0px solid rgb(45, 159, 204);
+    border-radius: 28px;
+    background-color: #EAEDED;
+    box-shadow: 0px 0px 14px 1px  rgb(45, 159, 204);
+}
+
+.page-box-header{
+    border-radius: 25px 25px 0px 0px;
+    background-color:  black; 
+    padding:10px 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+}
+
+.page-box-header h1{
+
+}
+
+.page-box-header h2{
+    font-weight: lighter;
+}
+
+.page-box-main-content{
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    
+}
+
+.page-box-tile{
+    margin:20px;
+    padding:20px;
+    
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    
+    color:black;
+    
+}
+
+.page-box-tile h2{
+    font-size: 28px;
+    
+}
+
+*{
+    box-sizing: border-box;
+}
+
+/* Content area used in the pages ie where actual info is displayed.  Each page has own ID in class? */
+
+
+.footer {
+    background-color: black;
+    text-align: center;
+    
+}
+
+/* Header */
+.header { 
+    width:100%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Verdana;
+    color: white;
+    
+    padding: 0px 10px 0px 20px;
+}
+
+.header-logo{
+    display:inline-flex;
+    align-items: center;
+    padding-left: 10px;
+    background-color: transparent;
+    cursor: pointer;
+    
+}
+
+.header-logo-img{
+    width: 40px;
+    
+}
+
+.header-logo h4 {
+    padding:0px;
+    padding-left:5px;
+    color:white;
+    font-weight: lighter;
+    letter-spacing: 5px;
+    font-size: 16px;
+}
+
+.socials {
+    display: inline-flex;
+    align-items: center;
+    
+}
+
+.socials img{
+    width: 26px;
+    
+    padding-right: 5px;
+    cursor: pointer;
+    
+}
+
+/* Toolbar in header */
+
+.toolbar{
+    
+}
+.toolbar ul{
+    list-style-type: none;
+    
+}
+
+.toolbar li{
+    display: inline-flex;
+    justify-content: center;
+    padding-right: 25px;
+    
+}
+
+.toolbar li a{
+    padding: 7px 14px;
+    text-decoration: none;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all .5s ease 0s;
+}
+
+.toolbar li a:hover{
+    color:rgb(45, 159, 204);
+}
+
+/* Profile bar in header */
+.profile-bar{
+    display: inline-flex;
+    align-items: center;
+    padding-right: 30px;
+}
+
+.profile-bar ul{
+    list-style-type: none;
+    padding-right:30px;
+}
+
+.profile-bar li{
+    display: inline-flex;
+    align-items: center;
+    
+}
+
+.profile-bar li a{
+    
+    padding: 7px 0px;
+    text-decoration: none;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all .5s ease 0s;
+}
+
+.profile-bar li a:hover{
+    color:rgb(45, 159, 204);
+}
+
+#points{
+    display:inline-flex;
+    align-items: center;
+    background-color: #161616;
+    border: 3px solid rgb(45, 159, 204);
+    border-radius: 5px;
+    padding:10px;
+}
+
+#points h3{
+    margin: 0px;
+    padding-left: 10px;
+}
+#profile-points-icon{
+    width:30px;
+}
+
+
+
+
+/* Navigation Bar */
+.navbar{
+    display:flex;
+    justify-content: space-between;
+    
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+}
+.navbar ul {
+    list-style-type: none;
+    margin:4px 0px 4px 0px;
+    padding:0px;
+}
+  
+.navbar li {
+    display: inline-block;
+    
+}
+  
+.navbar li a {
+    color:white;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    transition: all .5s ease 0s;
+}
+  
+.navbar li a:hover {
+    background-color: #303030;
+    color:rgb(45, 159, 204);
+}
+
+.navbar-right li a{
+    font-size: 14px
+}
+
+/* -------------------------------------------------------------Home-------------------------------------------------------------- */
+.claim-challenge-button{
+    border: 4px solid rgb(45, 159, 204);
+    border-radius: 10px;
+    background-color: black;
+    box-shadow: 0px 0px 10px 0px black;
+}
+
+.claim-challenge-button h2{
+    color: white;
+    margin: 0px;
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
+.claim-challenge-button:hover{
+    background-color: #202020;
+    cursor: pointer;
+}
+
+.results-button{
+    width: 32px;
+}
+
+.results-button-2{
+    width: 44px;
+    margin-right: 20px;
+}
+
+
+#recommended-surveys-tile{
+    width:95%;
+}
+
+.tile-row{
+    width:100%;
+    margin-bottom: 20px;
+}
+
+.home-tile{
+    
+    color:black;
+    background-color: #EAEDED;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    border-radius: 0px;
+    
+    margin:0px 8px 16px 8px;
+    padding:10px 30px;
+}
+
+.home-tile h2{
+    display: block;
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 10px 0px 15px 0px;
+}
+
+.home-tile a{
+    
+}
+
+
+#recommended-surveys{
+    width:100%;
+}
+
+.surveys-area{
+    display:flex;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+    background-color: #b9b9b9;
+    box-shadow: 0px 0px 4px 0px black;
+    border: 0px solid black;
+    
+}
+
+.survey-box{
+    background-color: white;
+    border: 0px solid black;
+    /*border: 5px outset rgb(45, 159, 204);*/
+    
+    padding:30px 35px;
+    height:363px;
+    width:280px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-variant: small-caps;
+    font-style: normal;
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color:black;
+
+    box-shadow: rgba(0, 0, 0, .7) 0px 12px 28px 0px, rgba(0, 0, 0, .7) 0px 2px 4px 0px, rgba(255, 255, 255, .7) 0px 0px 0px 1px inset;
+    
+}
+
+.survey-info{
+    display:block;
+    
+    
+}
+
+.survey-info a{
+    color:black;
+    margin:0;
+    padding:0;
+    font-weight: 600;
+}
+
+.survey-info h4{
+    
+    font-size: 20px;
+    margin:0;
+    padding-top: 5px;
+    font-weight: 200;
+}
+
+.survey-info h2{
+    margin:0;
+    padding:0;
+    font-size: 30px;
+    color: white;
+}
+
+.survey-info h2 a:hover{
+    margin:0;
+    padding:0;
+    color: #505050;
+}
+
+
+.time-reward{
+    display:flex;
+    justify-content: space-around;
+    padding-top: 13px;
+    
+    
+}
+
+.time-reward h4{
+    color:black;
+}
+
+.time-reward img{
+    width:35px;
+}
+
+.time-reward-info-row img{
+    display: inline-block;
+}
+
+.time-reward-info-row h4{
+    display: inline-block;
+    padding-left: px;
+    margin:0;
+    
+    
+    font-weight: 600;
+}
+
+.time-reward-info-row {
+    
+    padding-right: 0px;
+    
+}
+
+#points-balance{
+
+}
+
+#challenges{
+    flex-grow: 2;
+}
+
+.home-table{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-collapse: collapse;
+    box-shadow: 0px 0px 10px black;
+}
+
+.home-table tbody tr:hover {
+     background: #e9e9e9;
+ }
+
+.home-table thead{
+    background-color: black;
+    color: white;
+    font-size: 24px;
+}
+
+.home-table thead td{
+    padding: 6px 30px;
+    text-align: center;
+}
+
+.home-table tbody{
+    background-color: #b9b9b9;
+    color:black;
+}
+
+.home-table tbody tr{
+    
+}
+
+.home-table tbody td{
+    font-size: 18px;
+    padding: 6px 30px;
+}
+
+
+#my-surveys, #weekly-challenges{
+    background-color: transparent;
+    box-shadow: none;
+}
+
+
+
+
+
+
+/* -------------------------------------------------------------About?-------------------------------------------------------------- */
+
+.about-us{
+    background-color:black;
+    width: 50%;
+    float: left;
+}
+
+.clients {
+    background-color:black;
+    width: 50%;
+    text-align: center;
+    float: right;
+}
+
+.info-box{
+    background-color: #303030;
+    color:whitesmoke;
+    margin: 20px;
+    padding: 10px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: silver;
+    border-radius: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.clients img{ 
+    width: 300px;
+}
+
+.info-box h4{
+    margin: 0px;
+    font-size: 24px;
+    
+}
+
+.info-box p{
+    font-size: 16px;
+
+}
+
+/* --------------------------------------------------Ask (Entering Survey Details)-------------------------------------------------- */
+
+.survey-initializer-body{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: black;
+    border-radius: 0px 0px 25px 25px;
+}
+
+#form-body{
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: #EAEDED;
+    width: 100%;
+    padding-bottom: 30px;
+}
+
+.ask-tile{
+    
+    
+}
+
+.ask-tile-header{
+    color:black;
+    font-size: 28px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: lighter;
+    
+}
+
+.survey-details-inputs{
+    background-color: white;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, .7) 0px 12px 28px 0px, rgba(0, 0, 0, .7) 0px 2px 4px 0px, rgba(255, 255, 255, .7) 0px 0px 0px 1px inset;
+    height: 505px;
+    width: 390px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.section-content label{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.multicheckbox{
+    margin-bottom: 3px;
+}
+
+.detail-input-point{
+    
+    padding:10px;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+#industry-sector{
+    display:inline-flex;
+    flex-direction: row;
+}
+
+.detail-input-point label{
+    font-size: 24px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: normal;
+}
+
+#target{
+    padding-left: 40px;
+    border-left: 2px dotted black;
+    
+}
+
+#section-block{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: stretch;
+    
+}
+
+.survey-initializer-section{
+    display:inline-flex;
+    flex-direction: row;
+    background-color: white;
+    border-radius: 10px;
+    margin: 10px 0px;
+    box-shadow: 2px 2px 7px grey;
+}
+
+.section-header{
+    width: 150px;
+    background-color: black;
+    border-radius: 10px 0px 0px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.section-header h2{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0px;
+    font-weight: lighter;
+    font-size: 24px;
+    color:white;
+}
+
+.section-content{
+    padding: 5px 15px 2px 30px;
+}
+
+.section-content p{
+    display: inline-flex;
+    margin:15px 0px 10px 0px;
+}
+
+#sample_size{
+    width:40px;
+}
+
+#min_age, #max_age{
+    width:30px;
+}
+
+
+
+#submit-button{
+    
+    background-color: black;
+    margin: 0px;
+    text-align: right;
+    height: 80px;
+    width:100%;
+    border-radius: 0px 0px 25px 25px;
+}
+
+.create-submit-button{
+    padding: 15px 20px;
+    background-color: black;
+    border-radius: 7px;
+    border: 3px solid rgb(45, 159, 204);
+    color: white;
+    margin: 6px 20px 0px 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    box-shadow: 0px 0px 15px 5px rgb(45, 159, 204);
+}
+
+.create-submit-button:hover{
+    cursor: pointer;
+    background-color: #202020;
+}
+
+
+
+
+
+
+
+.survey-details{
+    background-color: #303030;;
+    border-radius: 5px;
+    margin:0px 50px 35px 200px;
+    width:600px;
+    margin: 0 auto;
+    border: 2px solid teal;
+}
+
+.survey-details h2, .survey-details label, .survey-details a{
+    color:whitesmoke;  
+}
+
+.survey-details-form {
+    padding: 0 35px;
+    display: inline-block;
+}
+
+.input-point{
+    padding:5px 0px;
+}
+
+.input-point label{
+    display:block;
+    padding-bottom:1px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.input-point input{
+    background-color: whitesmoke;
+}
+
+.survey-details-form input[type=submit] {
+    background-color: red;
+    border: 2px solid grey;
+    color: white;
+    padding: 4px 16px;
+    text-decoration: none;
+    margin: 16px 2px;
+    cursor: pointer;
+    display: block;
+  }
+
+.button{
+    background-color: white;
+    border: 1px solid red;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+/* ---------------------------------------------------------Browse Surveys---------------------------------------------------------- */
+#browse-surveys{
+    background-color: transparent;
+    border: 0px;
+    box-shadow: unset;
+}
+
+#sort-by{
+    border-bottom: 0px solid black;
+    display:flex;
+    width: 97%;
+    margin:0;
+    padding:0;
+    box-shadow: unset;
+    justify-content: flex-end;
+    background-color: transparent;
+    
+}
+
+#sort-by ul { 
+    list-style-type: none;
+    margin: 0;
+    padding: 8px 0px;
+    overflow: hidden;
+}
+  
+#sort-by li {
+    display: inline;
+}
+  
+#sort-by li a {
+    color:blue;
+    text-align: center;
+    padding: 0px 1px;
+    text-decoration: underline;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+  
+#sort-by li a:hover {
+    color: blue;
+}
+
+#browse-surveys-area{
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    justify-content: space-evenly;
+}
+
+
+
+.export-bar a{
+    margin:0;
+    padding:0;
+    color: green;
+
+}
+
+/* -----------------------------------------Sidebars to filter in Browse and Questionbank------------------------------------------- */
+
+.filter-sidebar {
+    float:left;
+    margin: 0px 0px 0px 0px;
+    border:1px solid white;
+    
+}
+
+.filter-sidebar h4{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: whitesmoke;
+    padding-left: 15px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.filter-sidebar ul{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: whitesmoke;
+    padding-left: 12px;
+    
+}
+
+.sidebar-unit{
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    background-color: #303030;
+    color:white;
+}
+
+/* ---------------------------------------------------------Questionbank----------------------------------------------------------- */
+
+#questionbank-feed{
+    margin:0 auto;
+}
+
+.question p {
+    font-size: 24px;
+    font-weight: 500;
+    padding: 20px 15px 25px 30px;
+    
+    margin:0px;
+}
+
+.answers{
+    font-size: 18px;
+    padding-bottom: 15px;
+    
+}
+
+.individual-answers{
+    padding-bottom: 8px;
+}
+
+/* -------------------------------------------------------Create a Survey----------------------------------------------------------- */
+.create-box{
+    border-bottom: 4px dotted white;
+    width:100%;
+    margin-bottom: 50px;
+}
+
+#create-box{
+    margin-left:auto;
+    margin-right: auto;
+}
+
+.question-input{
+    padding-top: 10px;
+}
+
+.question-input p{
+    margin-left: 20px;
+}
+
+#question_text{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
+
+#answer1, #answer2, #answer3, #answer4{
+    width:55%;
+}
+
+.add-to-survey-button{
+    display:block;
+    padding:5px;
+    
+    border: 1px solid rgb(45, 159, 204);
+    background-color: black;
+    color:white;
+    margin-left:auto;
+    margin-right: 5%;
+}
+
+
+
+#create-feed{
+    margin:0 auto;
+}
+
+/* -------------------------------------------------------Answer a Survey----------------------------------------------------------- */
+#questionbank-main{
+    display: flex;
+    background-color: #101010;
+    
+}
+
+#answer-survey-page{
+    width:100%;
+    display:inline-flex;
+    justify-content: space-between;
+}
+
+.header-right{
+    display: flex;
+    flex-direction: column;
+}
+.survey-icons{
+    display: inline-flex;
+    align-items: center;
+}
+
+
+
+.time-points-icon{
+    width: 50px;
+}
+
+.survey-sheet{
+    background-color: #101010;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width: 85%;
+    border: 0px solid black;
+    padding:50px 0px;
+}
+
+.question-box{
+    background-color: #222222;
+    border-radius: 25px;
+    color:white;
+    width:75%;
+    margin-bottom: 50px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0px 0px 15px 0px black;
+
+}
+
+.question p{
+    font-size: 30px;
+}
+
+.answers{
+    font-weight: lighter;
+    font-size: 22px;
+}
+
+
+#answer-page{
+    
+    background: #202020;
+}
+
+.answer-title{
+    margin-bottom: 40px;
+    border-bottom: 1px solid white;
+    color:white;
+}
+.answer-feed{
+    background-color: #333333;
+    border-radius: 15px;
+   
+}
+
+.survey-answering-form{
+    margin:20px 40px;
+    
+}
+
+
+
+.answers ul{
+    margin:0px;
+}
+
+
+/* -------------------------------------------------------------Log In-------------------------------------------------------------- */
+#register-toolbar ul{
+    background-color: transparent;
+    
+}
+
+#register-toolbar li{
+    background-color: black;
+    padding:7px 0px;
+    margin:0px 25px;
+    border: 1px solid rgb(45, 159, 204);;
+    border-radius: 4px;
+}
+
+.login-box{
+    background-color: rgba(0,0,0,0.4);
+    margin:0 auto;
+    width: 440px;
+    border-radius: 4px;
+    padding: 75px;
+    text-align: left;
+    color:white;
+
+}
+
+
+#login h4{
+    margin:0px 0px 25px 0px;
+    padding:0;
+    color:whitesmoke;
+    font-size: 36px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+
+}
+
+#login input[type="text"], #login input[type='email'] {
+    width: 100%;
+    height:45px;
+    border-radius: 6px;
+    font-size: 18px;
+    background-color:white;
+    color:black;
+    margin-bottom: 10px;
+    margin-left:0px;
+    padding-left:0px;
+    box-sizing: border-box;
+}
+
+
+
+.register-login-button{
+    background-color: black;
+    border: 1px solid rgb(45, 159, 204);;
+    width: 310px;
+    height:33px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 24px;
+    margin:30px 0px 15px 0px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#sign-in-button{
+    width:100%;
+    height:45px;
+    border-radius: 6px;
+}
+
+
+
+.remember-me h5{
+    margin:0px;
+    display:inline-block;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+    color:gray;
+}
+
+
+
+.need-help{
+    float:right;
+    
+}
+
+.login-register-redirect{
+    margin-top:50px;
+}
+
+.login-register-redirect h5{
+    margin:0;
+    display:inline-block;
+    font-size: 18px;
+    
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+}
+
+.new{
+    color:gray;
+}
+
+.sign-me-up{
+    color:white;
+
+}
+
+.recaptcha{
+    margin-top:20px;
+    color:gray;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+}
+
+/* ------------------------------------------------------------Register------------------------------------------------------------- */
+.index-register-login-page{
+    margin:0;
+    background-image: url('../images/earth.jpeg');
+}
+
+#register-header {
+    padding: 15px 20px 0px 20px;
+}
+
+#register-header, #register-toolbar, #register-page{
+    background-color: transparent;
+}
+
+.registration-message{
+    margin:135px auto;
+    text-align: center;
+    color:white;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.signup-message h1{
+    font-size: 60px;
+    font-weight: 600;
+    margin:0px;
+    margin-top:0px;
+}
+
+.signup-message h2{
+    font-size: 28px;
+    font-weight: 400;
+    margin:0px;
+    margin-top:20px;
+}
+
+.signup-message h3{
+    font-size: 18px;
+    font-weight: 400;
+    margin:0px;
+    margin-top:30px;
+    margin-bottom:20px;
+}
+
+.email-bar{
+    text-align: center;
+    margin-bottom: 0px;
+    
+}
+
+.email-input{
+    display:inline;
+    margin:0px;
+    padding:0px;
+}
+
+.get-started input[type='email']{
+    height:100%;
+    width:500px;
+    background-color: white;
+}
+
+.get-started{
+    display:inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items:stretch;
+    justify-content: center;
+    
+}
+
+#get-started-button{
+    margin:0;
+    padding:10px;
+    border: 1px solid rgb(45, 159, 204);;
+    border-radius: 1px;
+    background-color: black;
+    color: white;
+    
+    text-decoration: none;
+    font-size: 24px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.register-box{
+    background-color: #303030;
+    border-radius: 5px;
+    margin:0px 50px 35px 200px;
+    width:500px;
+    margin: 0 auto;
+    margin-top:300px;
+    border: 3px solid teal;
+    text-align: center;
+}
+
+#registration h4{
+    margin:5px 0px 0px 0px;
+    padding:0;
+    color:whitesmoke;
+    font-size: 36px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+}
+
+#registration input[type="text"], #registration input[type="email"], #registration input[type="date"], #registration select {
+    width: 300px;
+    height:25px;
+    font-size: 18px;
+    padding-left:5px;
+    background-color: #505050;
+    color:black;
+}
+
+#registration label{
+    margin-left:98px;
+    text-align: left;
+    color:whitesmoke;
+}
+
+.registration-user-info{
+    padding: 20px 0px;
+}
+
+
+#create-my-account-button{
+    width:100%;
+    height:45px;
+    border-radius: 6px;
+}
+
+.how-it-works{
+    background-color: black;
+    color:white;
+    width:100%;
+    border-top:8px solid #303030;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.step-description{
+    width:550px;
+    
+    
+}
+
+.step-description h1{
+    font-size: 44px;
+    font-weight: bold;
+    padding:0px 30px;
+}
+
+.step-description h2{
+    font-weight: lighter;
+    padding:0px 30px;
+    
+}
+
+.step-image{
+    padding: 30px 0px;
+
+}
+
+.step-img{
+    width:400px;
+}
+
+#step-1, #step-2, #step-3, #step-4{
+    
+    display:inline-flex;
+    flex-wrap:wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom:8px solid #303030;
+}
+
+
+#step-1, #step-2{
+    
+
+}
+
+#step-2{
+    flex-direction: row-reverse;
+}
+
+#step-4{
+    padding:30px 0px;
+}
+/*-----------------------------------------------------------ADMIN-----------------------------------------------------------------*/
+.profile-table{
+    border: 1px solid black;
+    
+}
+
+.profile-table tr, .profile-table td{
+    border: 1px solid black;
+    
+}
+/*-----------------------------------------------------------Redeem-----------------------------------------------------------------*/
+#incentives{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+#amazon{
+    display:inline-flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+    
+}
+
+.incentive{
+    border: 0px solid black;
+    box-shadow: rgba(0, 0, 0, .7) 0px 12px 28px 0px, rgba(0, 0, 0, .7) 0px 2px 4px 0px, rgba(255, 255, 255, .7) 0px 0px 0px 1px inset;
+
+}
+
+.incentive-img-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    width: 350px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.incentive h2{
+    margin:0;
+    font-weight: lighter;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.incentive-img{
+    
+    width:250px;
+    
+}
+
+.incentive-title{
+    background-color: black;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.incentive-title a, .incentive-title h2{
+    color:white;
+    font-size: 32px;
+    font-weight: lighter;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.incentive-form{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    
+    align-self: stretch;
+}
+
+.incentive-form-title{
+    
+    width: 100%;
+}
+
+.incentive-form-title h2{
+    margin:0px;
+    font-size: 36px;
+    color: black;
+    font-weight: lighter;
+}
+
+.amount-option{
+    padding-bottom: 10px;
+}
+
+.amount-option label{
+    font-size: 24px;
+}
+
+
+
+
+.redemption-amount, .incentive-email{
+    background-color: #757575;
+    border-radius: 20px;
+    color:black;
+    box-shadow: 0px 0px 8px 0px black;
+    padding:5px 20px;
+    font-weight: bold;
+}
+
+.incentive-checkout-button{
+    border: 4px solid rgb(45, 159, 204);
+    border-radius: 10px;
+    background-color: black;
+    box-shadow: 0px 0px 10px 0px black;
+
+}
+
+.incentive-checkout-button:hover{
+    background-color: #202020;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 5px black;
+
+}
+
+.incentive-checkout-button h2{
+    color: white;
+    margin:0px;
+    padding: 15px 45px;
+}

@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>My Account - AMPLIFY</title>
+{% endblock %}
+
+{% block body %}
+
+    <div class='page-box-header'>
+        <h1>My Account</h1>
+        <h2>See your account information and activity</h2>
+    </div>
+
+    <div class='page-box-main-content' id='profile'>
+        
+        <div class='page-box-tile' id='my-info'>
+            <h2>My Personal Information</h2>
+            <table class='home-table'>
+                <thead>
+                    <td>Email</td>
+                    <td>First Name</td>
+                    <td>Last Name</td>
+                    <td>Date of Birth</td>
+                    <td>Age</td>
+                    <td>Race</td>
+                    <td>Gender</td>
+                    <td>Region</td>
+                </thead>
+
+                <tr>
+                    <td>{{ current_user.email }}</td>
+                    <td>{{ current_user.firstname }}</td>
+                    <td>{{ current_user.lastname }}</td>
+                    <td>{{ current_user.dob }}</td>
+                    <td>{{ current_user.get_age() }}</td>
+                    <td>{{ current_user.race }}</td>
+                    <td>{{ current_user.gender }}</td>
+                    <td>{{ current_user.region }}</td>				
+                </tr>
+            </table>
+
+            <!--<table class='home-table'>
+                <thead>
+                    <td>Authenticated?</td>
+                    <td>Active?</td>
+                    <td>Anonymous?</td>
+                    <td>Panelist ID</td>
+                </thead>
+
+                <tr>
+                    <td>{{ current_user.is_authenticated }}</td>
+                    <td>{{ current_user.is_active }}</td>
+                    <td>{{ current_user.is_anonymous }}</td>
+                    <td>{{ current_user.get_id() }}</td>				
+                </tr>
+            </table>-->
+
+            
+        </div>
+
+        <div class='page-box-tile' id='my-points'>
+            <h2>Surveys I've Published</h2>
+            <table class='home-table'>
+                <thead>
+                    <td>Title</td>
+                    <td>Published On</td>
+                    <td>Responses</td>
+                    <td>Options</td>
+                </thead>
+                {% for survey in current_user.surveys %}
+                <tr>
+                    <td>{{ survey.title }}</td>
+                    <td>{{ survey.create_date }}</td>
+                    <td>{{ survey.completes }}/{{ survey.sample_size }}</td>
+                    <td>Visualize<br>Export</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class='page-box-tile' id='my-points'>
+            <h2>Surveys I've Responded To</h2>
+            <table class='home-table'>
+                <thead>
+                    <td>Title</td>
+                    <td>Points Earned</td>
+                </thead>
+                {% for survey in surveys_ive_responded_to %}
+                <tr>
+                    <td>{{ survey.title }}</td>
+                    <td>{{ survey.point_value }}</td>				
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class='page-box-tile' id='my-points'>
+            <h2>My Redemption History</h2>
+            <table class='home-table'>
+                <thead>
+                    <td>Type</td>
+                    <td>Cost</td>
+                    <td>Transaction Date</td>
+                </thead>
+                {% for entry in my_redemptions %}
+                <tr>
+                    <td>{{ entry.redemption }}</td>
+                    <td>{{ entry.amount }}</td>	
+                    <td>{{ entry.redemption_date }}</td>				
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+
+    </div>
+
+{% endblock %}

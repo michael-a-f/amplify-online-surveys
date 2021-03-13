@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Home - AMPLIFY</title>
+{% endblock %}
+
+{% block body %}
+    
+    <div class='page-box-header'>
+        <h1>Welcome, {{ current_user.firstname }}!</h1>
+        <h2>User Dashboard</h2>
+    </div>
+
+    <div class='page-box-main-content'>
+
+        <div class='page-box-tile' id='weekly-challenges'>
+            <h2>Weekly Challenges</h2>
+            <table class='home-table' id='challenges-table'>
+                <thead id='challenges-table-head'>
+                    <td>Task</td>
+                    <td>Award</td>
+                    <td>Status</td>
+                </thead>
+                <tbody>
+                        <tr>
+                            <td>{{ challenges[0].task }}</td>
+                            <td><img id='profile-points-icon' src="\static\images\star6.png" alt="Points"> {{ challenges[0].award }} pts.</td>
+                            {% if current_user.redeemed_challenge_1 %}
+                                <td>Claimed!</td>
+                            
+                            {% elif num_completed == 0 %}
+                                <td>{{ num_completed }}/1</td>
+                            {% elif num_completed > 0 %}
+                                <td>
+                                    <div class='claim-challenge-button'>
+                                        <h2><a href="{{ url_for('other_views.challenge_redemption', challenge_id=1) }}">Claim!</a></h2>
+                                    </div>
+                                </td>
+                            {% endif %}
+                        </tr>
+
+                    <tr>
+                        <td>{{ challenges[1].task }}</td>
+
+                        <td><img id='profile-points-icon' src="\static\images\star6.png" alt="Points"> {{ challenges[1].award }} pts.</td>
+                        
+                        {% if current_user.redeemed_challenge_2 %}
+                            <td>Claimed!</td>
+                        {% elif num_published == 0 %}
+                            <td>{{ num_published }}/1</td>
+                        {% elif num_published > 0 %}
+                            <td>
+                                <div class='claim-challenge-button'>
+                                    <h2><a href="{{ url_for('other_views.challenge_redemption', challenge_id=2) }}">Claim!</a></h2>
+                                </div>
+                            </td>
+                        {% endif %}
+                    </tr>
+                    
+            </tbody>
+
+            </table>
+        
+        </div>
+
+        <div class='page-box-tile' id='my-surveys'>
+            <h2>Featured Surveys</h2>
+            
+            <table class='home-table'>
+                <thead>
+                    <td>Title</td>
+                    <td>Responses</td>
+                    <td>Results</td>
+                </thead>
+                
+                {% for survey in featured_surveys %}
+                    <tr>
+                        <td>{{ survey.title }}</td>
+                        <td>{{ survey.completes }} / {{ survey.sample_size }}</td>
+                        <td>
+                            <a href="{{ url_for('other_views.see_results', survey_id=survey.survey_id) }}"><img class='results-button-2' src="\static\images\chart2.jpg" alt="Points"></a>
+                            <a href="{{ url_for('other_views.export_to_excel', survey_id=survey.survey_id) }}"><img class='results-button' src="\static\images\excelcircle.png" alt="Points">&#8595</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                
+            </table>
+        </div>
+    
+        <div class='page-box-tile' id='recommended-surveys-tile'>
+            <h2>Surveys to Complete</h2>
+            <div class='surveys-area'>
+            
+                {% for survey in home_surveys %}
+                    <div class='survey-box' id='home-survey-box'>
+                        
+                        <div class='survey-info' id='home-survey-info'>
+                            <h2><a href= "{{ url_for('answer.answer', survey_id=survey.survey_id) }}">{{ survey.title }}</a></h2>
+                            <h4>{{ survey.category }}</h4>
+                            
+                        </div>
+
+                        <div class='time-reward' id='home-time-reward'>
+
+                            
+                            <div class='time-reward-info-row'>
+                                <img src="\static\images\clock3.png" alt="clock">
+                                <h4>{{ survey.num_questions }} Questions</h4> 
+                            </div>
+
+                            <div class='time-reward-info-row'>
+                                <img src="\static\images\star6.png" alt="points">
+                                <h4>{{ survey.point_value }} pts.</h4>
+                            </div>
+
+                        </div>
+                    </div>
+                {% endfor %}
+                
+            </div>
+            <a href="{{ url_for('answer.browse', sort_parameter='recommended') }}">See more surveys...</a>
+        </div>
+
+    </div>
+
+{% endblock %}

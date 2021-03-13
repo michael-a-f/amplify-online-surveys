@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title> {{ current_survey.title }} - AMPLIFY</title>
+{% endblock %}
+
+{% block body %}
+
+<div class='page-box-header' id='answer-survey-page'>
+    <div class='header-left'>
+        <h1>{{ current_survey.title }}</h1>
+        <h2>{{ current_survey.description }}</h2>
+    </div>
+
+    <div class='header-right'>
+        <div class='survey-icons' id='survey-time'>
+            <img class='time-points-icon' src="\static\images\clock3.png" alt="clock">
+            <h3>{{ current_survey.num_questions }} Questions</h3>
+        </div>
+
+        <div class='survey-icons' id='survey-reward'>
+            <img class='time-points-icon' src="\static\images\star6.png" alt="points">
+            <h3>{{ current_survey.point_value }} Points</h3>
+        </div>
+        
+    </div>
+
+</div>
+
+    <div class='page-box-main-content' id='questionbank-main'>
+        
+        <div class='survey-sheet'>
+
+            <div class='create-box'>
+                <div class='question-box' id='create-box'>
+                    <form class='question-text' action="" method="POST">
+                        {{  form.csrf_token()  }}
+                        <div class='question-input'>
+                            
+                                {{ form.question_text }}
+                        </div>
+
+                        <div class='question-input'>
+                            <p>You may leave an Answer field blank if you have less than 4 options.</p>
+                            
+                                <ul>
+                                    {% for answer in form.answers %}
+                                        <li>{{ answer }}</li>
+                                    {% endfor %}
+                                </ul>
+                        </div>
+                        <input type="submit" value="Add question to survey" class='add-to-survey-button'>
+                    </form>
+
+
+                </div>
+            </div>
+            {% for question in current_questions %}
+                <div class='question-box'>
+                    <div class='question'>
+                        <p>{{ question.question }}</p>
+                    </div>
+
+                    <div class='answers'>
+                        <ul>
+                            {% for answer in question.answers %}
+                                <input type="radio" id="" name="{{ question.question_id }}" value="">
+                                <label for="">{{ answer.answer }}</label><br>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

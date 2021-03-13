@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Home - AMPLIFY</title>
+{% endblock %}
+
+{% block body %}
+<div class='page-box-header'>
+    <h1>Admin Page</h1>
+    <h2>See information that users cannot.</h2>
+
+</div>
+    <div class='page-box-main-content' id='admin-page'>
+
+        <div class='page-box-tile'>
+            <h2>Panelists</h2>
+            <table class='home-table'>
+                <thead>
+                    <td>Panelist ID</td>
+                    <td>Email</td>
+                    <td>First Name</td>
+                    <td>Last Name</td>
+                    <td>Date of Birth</td>
+                    <td>Race/Ethnicity</td>
+                    <td>Gender</td>
+                    <td>Region</td>
+                    <td>Joined Date</td>
+                    <td>Points Balance</td>
+                </thead>
+                
+                {% for panelist in panelists %}
+                <tr>
+                    <td>{{ panelist.panelist_id }}</td>
+                    <td>{{ panelist.email }}</td>
+                    <td>{{ panelist.firstname }}</td>
+                    <td>{{ panelist.lastname }}</td>
+                    <td>{{ panelist.dob }}</td>	
+                    <td>{{ panelist.race }}</td>
+                    <td>{{ panelist.gender }}</td>
+                    <td>{{ panelist.region }}</td>			
+                    <td>{{ panelist.joined_date }}</td>
+                    <td>{{ panelist.point_balance }}</td>	
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class='page-box-tile'>
+            <h2>Surveys</h2>
+            <table class='home-table'>
+                <thead>
+                    <td>Survey ID</td>
+                    <td>Published By</td>
+                    <td>Category</td>
+                    <td>Title</td>
+                    <td>Description</td>
+                    <td>Sample Size</td>
+                    <td>Min. Age</td>
+                    <td>Max. Age</td>
+                    <td>Create Date</td>
+                    <td>Races Allowed</td>
+                    <td>Genders Allowed</td>
+                    <td>Regions Allowed</td>
+                </thead>
+                
+                {% for survey in surveys %}
+                <tr>
+                    <td>{{ survey.survey_id }}</td>
+                    <td>{{ survey.publisher.email }}</td>
+                    <td>{{ survey.category }}</td>
+                    <td>{{ survey.title }}</td>
+                    <td>{{ survey.description }}</td>	
+                    <td>{{ survey.sample_size }}</td>
+                    <td>{{ survey.min_age }}</td>
+                    <td>{{ survey.max_age }}</td>			
+                    <td>{{ survey.create_date }}</td>
+                    <td>
+                        {% for race in survey.races %}
+                            {{ race.race}}
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for gender in survey.genders %}
+                            {{ gender.gender}}
+                        {% endfor %}
+                    </td>	
+                    <td>
+                        {% for region in survey.regions %}
+                            {{ region.region}}
+                        {% endfor %}
+                    </td>	
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class='page-box-tile'>
+            <h2>Races</h2>
+            <table class='home-table'>
+                <thead>
+                    <td>Race ID</td>
+                    <td>Race</td>
+                </thead>
+                
+                {% for race in races %}
+                <tr>
+                    <td>{{ race.race_id }}</td>
+                    <td>{{ race.race }}</td>	
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class='page-box-tile'>
+            <h2>Genders</h2>
+            <table class='home-table'>
+                <thead>
+                    <td>Gender ID</td>
+                    <td>Gender</td>
+                </thead>
+                
+                {% for gender in genders %}
+                <tr>
+                    <td>{{ gender.gender_id }}</td>
+                    <td>{{ gender.gender }}</td>	
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class='page-box-tile'>
+            <h2>Regions</h2>
+            <table class='home-table'>
+                <thead>
+                    <td>Region ID</td>
+                    <td>Region</td>
+                </thead>
+                
+                {% for region in regions %}
+                <tr>
+                    <td>{{ region.region_id }}</td>
+                    <td>{{ region.region }}</td>	
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class='page-box-tile'>
+            <h2>Questions</h2>
+            <table class='home-table'>
+                <thead>
+                    <td>Question ID</td>
+                    <td>Parent Survey ID</td>
+                    <td>Question</td>
+                    <td>Answers</td>
+                </thead>
+                
+                {% for question in questions %}
+                <tr>
+                    <td>{{ question.question_id }}</td>
+                    <td>{{ question.parent_survey_id }}</td>
+                    <td>{{ question.question }}</td>
+                    <td>
+                    {% for answer in question.answers %}
+                        {{ answer.answer }}
+                    {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class='page-box-tile'>
+            <h2>Answers</h2>
+            <table class='home-table'>
+                <thead>
+                    <td>Answer ID</td>
+                    <td>Parent Question ID</td>
+                    <td>Answer</td>
+                </thead>
+                
+                {% for answer in answers %}
+                <tr>
+                    <td>{{ answer.answer_id }}</td>
+                    <td>{{ answer.parent_question_id }}</td>
+                    <td>{{ answer.answer }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class='page-box-tile'>
+            <h2>Responses</h2>
+            <table class='home-table'>
+                <thead>
+                    <td>Survey ID</td>
+                    <td>Question ID</td>
+                    <td>Panelist ID</td>
+                    <td>Response</td>
+                </thead>
+                
+                {% for response in responses %}
+                <tr>
+                    <td>{{ response.parent_survey_id }}</td>
+                    <td>{{ response.parent_question_id }}</td>
+                    <td>{{ response.response_panelist_id }}</td>
+                    <td>{{ response.response }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

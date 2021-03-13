@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Answer - AMPLIFY</title>
+{% endblock %}
+
+{% block body %}
+
+    <div class='page-box-header'>
+        <h1>Browse Open Surveys</h1>
+        <h2>Click a survey to begin answering its questions.</h2>
+
+    </div>
+
+    <div class='page-box-main-content'>
+        <div class='page-box-tile' id='sort-by'>
+            <ul>
+                <li><a></a>Sort By:</a></li>
+                <li><a href="{{ url_for('answer.browse', sort_parameter='recommended') }}">Recommended</a></li>
+                <li><a>/</a></li>
+                <li><a href="{{ url_for('answer.browse', sort_parameter='shortest') }}">Shortest First</a></li>
+                <li><a>/</a></li>
+                <li><a href="{{ url_for('answer.browse', sort_parameter='longest') }}">Longest First</a></li>
+                <li><a>/</a></li>
+                <li><a href="{{ url_for('answer.browse', sort_parameter='newest') }}">Newest First</a></li>
+                <li><a>/</a></li>
+                <li><a href="{{ url_for('answer.browse', sort_parameter='oldest') }}">Oldest First</a></li>
+            </ul>
+        </div>
+
+        <div class='page-box-tile' id='browse-surveys'>
+            <div class='surveys-area'>
+                {% for survey in surveys %}
+                
+                    <div class='survey-box' id='home-survey-box'>
+                        
+                        <div class='survey-info' id='home-survey-info'>
+                            <!--Add link to url_for(answer, survey.survey_ID)-->
+                            <h2><a href= "{{ url_for('answer.answer', survey_id=survey.survey_id) }}">{{ survey.title }}</a></h2>
+                            <h4>{{ survey.category }}</h4>
+                            
+                        </div>
+
+                        <div class='time-reward' id='home-time-reward'>
+
+                            
+                            <div class='time-reward-info-row'>
+                                <img src="\static\images\clock3.png" alt="clock">
+                                <h4>{{ survey.num_questions }} Questions</h4> 
+                            </div>
+
+                            <div class='time-reward-info-row'>
+                                <img src="\static\images\star6.png" alt="points">
+                                <h4>{{ survey.point_value }} pts.</h4>
+                            </div>
+
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

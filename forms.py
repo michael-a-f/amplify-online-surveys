@@ -1,4 +1,6 @@
-from wtforms import Form, StringField, BooleanField, validators, PasswordField, SelectField, RadioField, IntegerField, TextAreaField
+from wtforms import (
+    Form, StringField, BooleanField, validators, PasswordField, SelectField,
+    RadioField, IntegerField, TextAreaField, FieldList)
 from wtforms.fields.html5 import EmailField, DateField
 from flask_wtf import FlaskForm
 from wtforms import widgets, SelectMultipleField
@@ -69,6 +71,22 @@ class PanelistDetailsForm(Form):
     region = SelectField('Region of Residence', coerce=str, choices=['Northeast', 'Midwest', 'West', 'South'])
 
 
+class PanelistLoginForm(Form):
+    """Class for the form to login"""
+
+    email = EmailField('Email Address', 
+        [
+            validators.Email(),
+            validators.Length(min=6, max=35)
+        ])
+
+    password = PasswordField('Password',
+        [
+            validators.InputRequired(),
+            validators.Length(min=6, max=35)
+        ])
+
+
 class MultiCheckboxField(SelectMultipleField):
     """Class to allow a 'Check all that apply' input style.
 
@@ -77,6 +95,7 @@ class MultiCheckboxField(SelectMultipleField):
 
     widget = widgets.ListWidget(prefix_label=False)
     option_widget = widgets.CheckboxInput()
+
 
 class SurveyDetailsForm(FlaskForm):
     """Class for the form to create a survey in the 'Ask' page.
@@ -106,7 +125,7 @@ class SurveyDetailsForm(FlaskForm):
     survey_description = TextAreaField('Description',
     [
         validators.InputRequired(),
-        validators.Length(min=6, max=35)
+        validators.Length(min=6, max=140)
     ],
     render_kw={"placeholder":"Provide a short description of your survey"})
 
@@ -128,17 +147,21 @@ class SurveyDetailsForm(FlaskForm):
         validators.NumberRange(min=18, max=65)
     ])
 
-    race = MultiCheckboxField('Race', choices=[(1, 'Black or African American'), (2, 'White'), (3, 'Asian'), (4,'Hispanic or Latino'), (5, 'American Indian or Alaska Native'), (6, 'Native Hawaiian or Other Pacific Islander')])
-    gender = MultiCheckboxField('Gender', choices=[(1, 'Male'), (2, 'Female'), (3, 'Non-binary')])
-    region = MultiCheckboxField('Region', choices=[(1, 'Northeast'), (2, 'Midwest'), (3, 'West'), (4, 'South')])
-
-'''
-class LoginForm(Form):
-    email     = StringField('Username', [validators.Length(min=4, max=25)])
-    password        = StringField('Email Address', [validators.Length(min=6, max=35)])
-    remember_me = BooleanField('I accept the site rules', [validators.InputRequired()])
+    race = MultiCheckboxField('Race', coerce=int, choices=[(1, 'Black or African American'), (2, 'White'), (3, 'Asian'), (4,'Hispanic or Latino'), (5, 'American Indian or Alaska Native'), (6, 'Native Hawaiian or Other Pacific Islander')])
+    gender = MultiCheckboxField('Gender', coerce=int, choices=[(1, 'Male'), (2, 'Female'), (3, 'Non-binary')])
+    region = MultiCheckboxField('Region', coerce=int, choices=[(1, 'Northeast'), (2, 'Midwest'), (3, 'West'), (4, 'South')])
 
 
+class SurveyContentForm(FlaskForm):
+    question_text = TextAreaField('Question',
+    [
+        validators.InputRequired(),
+        validators.Length(min=6, max=140)
+    ],
+    render_kw={"placeholder":"Please type your question here."})
 
-#class SurveyContentForm(Form):
-'''
+    answers = FieldList(StringField('Answer', render_kw={"placeholder":"Answer option"}), min_entries=4, max_entries=5)
+
+
+class IncentiveRedemption(FlaskForm):
+    amount = RadioField('Amount', coerce=int, choices=[(50, '$5 (50 pts.)'), (100, '$10 (100 pts.)'), (150, '$15 (150 pts.)')])

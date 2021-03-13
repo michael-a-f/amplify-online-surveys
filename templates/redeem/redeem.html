@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Redeem - AMPLIFY</title>
+{% endblock %}
+
+{% block body %}
+
+    <div class='page-box-header'>
+        <h1>Redeem</h1>
+        <h2>Select a reward and proceed to checkout.</h2>
+    </div>
+
+    <div class='page-box-main-content' id='incentives'>
+        
+        <div class='page-box-tile' id='amazon'>
+            <div class='incentive'>
+                <div class='incentive-img-box'>
+                    <img class='incentive-img' src="\static\images\amazon.png" alt="">
+                </div>
+                
+                <div class='incentive-title'>
+                    <a href="{{ url_for('redeem.amazon') }}"><h2>Amazon Gift Card Code</h2></a>
+                </div>
+            </div>
+
+            <div class='incentive'>
+                <div class='incentive-img-box'>
+                    <img class='incentive-img' src="\static\images\paypal.png" alt="">
+                </div>
+                
+                <div class='incentive-title'>
+                    <a href="{{ url_for('redeem.paypal') }}"><h2>PayPal Gift Card Code</h2></a>
+                </div>
+            </div>
+
+            <div class='incentive'>
+                <div class='incentive-img-box'>
+                    <img class='incentive-img' src="\static\images\venmo.png" alt="">
+                </div>
+                
+                <div class='incentive-title'>
+                    <a href="{{ url_for('redeem.venmo') }}"><h2>Venmo Payment</h2></a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
