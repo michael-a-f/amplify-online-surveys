@@ -4,9 +4,9 @@ from flask import (
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import current_user, login_user
-from decorators import *
-from models import *
-from __init__ import db
+from app.decorators import *
+from app.models import *
+from app.__init__ import db
 import xlsxwriter
 from io import BytesIO
 

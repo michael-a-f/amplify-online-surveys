@@ -2,7 +2,7 @@ from flask import Blueprint, flash, g, redirect, render_template, request, sessi
 from flask_login import current_user
 from decorators import *
 from forms import MultiCheckboxField, SurveyDetailsForm, SurveyContentForm
-from models import *
+from app.models import *
 
 
 bp = Blueprint('ask', __name__, url_prefix='/ask')

@@ -2,8 +2,8 @@ from flask import Blueprint, flash, redirect, render_template, request, session,
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import current_user, login_user, logout_user
 from forms import RegistrationForm, PanelistDetailsForm, PanelistLoginForm
-from models import Panelist
-from __init__ import db
+from app.models import Panelist
+from app.__init__ import db
 
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')

@@ -1,7 +1,7 @@
 from flask import Blueprint, flash, render_template
 from flask_login import current_user
-from decorators import *
-from models import *
+from app.decorators import *
+from app.models import *
 from wtforms import Form, validators, RadioField, FieldList
 from flask_wtf import FlaskForm
 
