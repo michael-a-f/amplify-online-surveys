@@ -26,8 +26,10 @@ def create_app(test_config=None):
 
     # Configure application.
     #app.config.from_pyfile('config.py', silent=True)
-    app.config.from_envvar('PROD_SETTINGS')
-
+    
+    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', None)
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('SQLALCHEMY_DATABASE_URI', None)
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.environ.get('SQLALCHEMY_TRACK_MODIFICATIONS', None)
     
     # Imports
     import models
