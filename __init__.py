@@ -2,8 +2,8 @@ import os
 from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
-#from decorators import *
-#from models import *
+from app.decorators import *
+from app.models import *
 
 
 
@@ -24,11 +24,6 @@ def create_app(test_config=None):
     # Initialize the core application.
     app = Flask(__name__)
     app.config.from_pyfile('config.py', silent=True)
-   
-    # Import the necessary modules
-    from app.models import *
-    from app.decorators import *
-    from forms import *
     
     # Define a user_loader callback for the LoginManager instance.
     @login_manager.user_loader
