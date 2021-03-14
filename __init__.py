@@ -2,8 +2,8 @@ import os
 from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
-#from app.decorators import *
-#from app.models import *
+from decorators import *
+from models import *
 
 
 
@@ -48,14 +48,14 @@ def create_app(test_config=None):
         for the panelist with that panelist_id, and returns a User object created
         from that panelist's data.
         """
-        #try:
-        print(unicode_user_id)
-        print('Unicode id for the user loader is ' + str(unicode_user_id))
-        #return Panelist.query.get(int(unicode_user_id))
-        return Panelist.query.get(1)
-        #except:
-        #print('Unable to load a user from Panelists with the given unicode ID.')
-        #return None
+        try:
+            #print(unicode_user_id)
+            #print('Unicode id for the user loader is ' + str(unicode_user_id))
+            return Panelist.query.get(int(unicode_user_id))
+            #return Panelist.query.get(1)
+        except:
+            #print('Unable to load a user from Panelists with the given unicode ID.')
+            return None
 
 
     # Initialize plugins
