@@ -48,7 +48,8 @@ def create_app(test_config=None):
         from that panelist's data.
         """
         try:
-            #print('Unicode id for the user loader is ' + str(unicode_user_id))
+            print(unicode_user_id)
+            print('Unicode id for the user loader is ' + str(unicode_user_id))
             return Panelist.query.get(int(unicode_user_id))
         except:
             print('Unable to load a user from Panelists with the given unicode ID.')
