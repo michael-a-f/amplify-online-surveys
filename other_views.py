@@ -19,8 +19,8 @@ bp = Blueprint('other_views', __name__)
 def home():
     home_surveys = current_user.get_eligible_surveys()
     challenges = Challenge.query.limit(2)
-    #num_completed = func.count(Response.parent_survey_id)
-    num_completed = Response.query.filter_by(response_panelist_id=current_user.panelist_id).group_by(Response.parent_survey_id).count(Response.response_id) # count the number of unique survey_ids in that panelists responses table.
+    
+    num_completed = Response.query.filter_by(response_panelist_id=current_user.panelist_id).count() # count the number of unique survey_ids in that panelists responses table.
     num_published = Survey.query.filter_by(publisher_id=current_user.panelist_id).count()
     featured_surveys = Survey.query.filter_by(status='Completed').limit(3)
     my_surveys = Survey.query.filter_by(publisher_id=current_user.panelist_id).all()
