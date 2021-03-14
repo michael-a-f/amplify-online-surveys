@@ -33,6 +33,7 @@ def create_app(test_config=None):
     
     # Imports
     import models
+    from models import Panelist
     import decorators
     import forms
 
