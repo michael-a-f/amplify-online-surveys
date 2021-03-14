@@ -61,7 +61,7 @@ class Panelist(UserMixin, db.Model):
     def get_id(self):
         #print(self.panelist_id)
         unicode_id = self.panelist_id
-        #print(unicode_id)
+        print('Get ID method of Panelist is returning ' + str(unicode_id))
         return unicode_id
 
     def get_eligible_surveys(self):
