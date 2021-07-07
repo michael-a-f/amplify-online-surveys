@@ -40,5 +40,5 @@ def wipe_db():
     except:
         print('There was an issue dropping all tables.')
 
-initialize_db()
+#initialize_db()
 #wipe_db()

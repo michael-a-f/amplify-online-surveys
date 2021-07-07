@@ -1,128 +1,100 @@
-{% extends 'base.html' %}
-
-{% block head %}
+{% extends 'base.html' %} {% block head %}
 <title>Ask - AMPLIFY</title>
+{% endblock %} {% block body %}
+
+<div class="page-box-header">
+	<h1>Create a Survey</h1>
+	<h2>Get the opinions you need, from the people you want.</h2>
+</div>
+
+<form class="survey-initializer-body" method="POST">
+	{{ form.csrf_token() }}
+	<div id="form-body">
+		<div class="ask-tile" id="details">
+			<h2 class="ask-tile-header">1. Enter Survey Details</h2>
+
+			<div class="survey-details-inputs">
+				<div class="detail-input-point">
+					{{ form.title.label }} {{ form.title }} {{ form.category.label }} {{
+					form.category }}
+				</div>
+
+				<div class="detail-input-point">
+					{{ form.survey_description.label }} {{ form.survey_description }}
+				</div>
+			</div>
+		</div>
+
+		<div class="ask-tile" id="target">
+			<h2 class="ask-tile-header">2. Who do you want to hear from?</h2>
+
+			<div id="section-block">
+				<div class="survey-initializer-section" id="sample-size">
+					<div class="section-header">
+						<h2>{{ form.sample_size.label }}</h2>
+					</div>
+
+					<div class="section-content">{{ form.sample_size }}</div>
+				</div>
+
+				<div class="survey-initializer-section" id="gender">
+					<div class="section-header">
+						<h2>{{ form.gender.label }}</h2>
+					</div>
+
+					<div class="section-content">
+						{% for gender in form.gender %}
+						<div class="multicheckbox">{{ gender }} {{ gender.label }}</div>
+						{% endfor %}
+					</div>
+				</div>
+
+				<div class="survey-initializer-section" id="age-range">
+					<div class="section-header">
+						<h2>Age Range</h2>
+					</div>
+
+					<div class="section-content">
+						{{ form.min_age.label}} {{ form.min_age }}
+						<p>to</p>
+						{{ form.max_age.label }} {{ form.max_age }}
+					</div>
+				</div>
+
+				<div class="survey-initializer-section" id="region">
+					<div class="section-header">
+						<h2>{{ form.region.label }}</h2>
+					</div>
+
+					<div class="section-content">
+						{% for region in form.region %}
+						<div class="multicheckbox">{{ region }} {{ region.label }}</div>
+						{% endfor %}
+					</div>
+				</div>
+
+				<div class="survey-initializer-section" id="race">
+					<div class="section-header">
+						<h2>{{ form.race.label }}</h2>
+					</div>
+
+					<div class="section-content">
+						{% for race in form.race %}
+						<div class="multicheckbox">{{ race }} {{ race.label }}</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="submit-button">
+		<input
+			type="submit"
+			value="Next: Add Questions"
+			class="create-submit-button"
+		/>
+	</div>
+</form>
+
 {% endblock %}
-
-{% block body %}
-
-    <div class='page-box-header'>
-        <h1>Create a Survey</h1>
-        <h2>Get the opinions you need, from the people you want.</h2>
-    </div>
-
-    
-        <form class='survey-initializer-body' method='POST'>
-            {{ form.csrf_token() }}
-            <div id='form-body'>
-                <div class='ask-tile' id='details'>
-                    <h2 class='ask-tile-header'>1. Enter Survey Details</h2>
-                    
-                    <div class='survey-details-inputs'>
-                        <div class='detail-input-point'>
-                            {{ form.title.label }}
-                            {{ form.title }}
-                            {{ form.category.label }}
-                            {{ form.category }}
-                        </div>
-
-
-                        <div class='detail-input-point'>
-                            {{ form.survey_description.label }}
-                            {{ form.survey_description }}
-                        </div>
-                    </div>
-            
-                </div>
-
-                <div class='ask-tile' id='target'>
-                    <h2 class='ask-tile-header'>2. Who do you want to hear from?</h2>
-
-                    <div id='section-block'>
-
-                        <div class='survey-initializer-section' id=sample-size>
-                            <div class='section-header'>
-                                <h2>{{ form.sample_size.label }}</h2>
-                            </div>
-            
-                            <div class='section-content'>
-                                {{ form.sample_size }}
-                            </div>
-                        </div>
-
-                        <div class='survey-initializer-section' id=gender>
-                            <div class='section-header'>
-                                <h2>{{ form.gender.label }}</h2>
-                            </div>
-                            
-                            
-                            <div class='section-content'>
-                                {% for gender in form.gender %}
-                                <div class='multicheckbox'>
-                                    {{ gender }}
-                                    {{ gender.label }}
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-
-                        <div class='survey-initializer-section' id=age-range>
-                            <div class='section-header'>
-                                <h2>Age Range</h2>
-                            </div>
-            
-                            <div class='section-content'>
-                                {{ form.min_age.label}}
-                                {{ form.min_age }}
-                                <p>to</p>
-                                {{ form.max_age.label }}
-                                {{ form.max_age }}
-                            </div>
-                        </div>
-
-                        <div class='survey-initializer-section' id=region>
-                            <div class='section-header'>
-                                <h2>{{ form.region.label }}</h2>
-                            </div>
-                            
-                            
-                            <div class='section-content'>
-                                {% for region in form.region %}
-                                <div class='multicheckbox'>
-                                    {{ region }}
-                                    {{ region.label }}
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-
-                        <div class='survey-initializer-section' id=race>
-                            <div class='section-header'>
-                                <h2>{{ form.race.label }}</h2>
-                            </div>
-                            
-                            
-                            <div class='section-content'>
-                                {% for race in form.race %}
-                                <div class='multicheckbox'>
-                                    {{ race }}
-                                    {{ race.label }}
-                                </div>
-                                {% endfor %}
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-
-            <div id='submit-button'>
-                <input type="submit" value="Next: Add Questions" class='create-submit-button'>
-            </div>
-        
-        </form>
-
-    
-    
-{% endblock %}
-

@@ -1,58 +1,59 @@
-{% extends 'base.html' %}
-
-{% block head %}
+{% extends 'base.html' %} {% block head %}
 <title>Results - AMPLIFY</title>
-{% endblock %}
+{% endblock %} {% block body %}
+<div class="page-box-header" id="answer-survey-page">
+	<div class="header-left">
+		<h1>Results for Survey: {{ current_survey.title }}</h1>
+		<h2>Survey Description: {{ current_survey.description }}</h2>
+	</div>
 
-{% block body %}
-<div class='page-box-header' id='answer-survey-page'>
-    <div class='header-left'>
-        <h1>Results for Survey: {{ current_survey.title }}</h1>
-        <h2>Survey Description: {{ current_survey.description }}</h2>
-    </div>
+	<div class="header-right">
+		<div class="survey-icons" id="survey-time">
+			<img
+				class="time-points-icon"
+				src="\static\images\clock3.png"
+				alt="clock"
+			/>
+			<h3>{{ current_survey.num_questions }} Questions</h3>
+		</div>
 
-    <div class='header-right'>
-        <div class='survey-icons' id='survey-time'>
-            <img class='time-points-icon' src="\static\images\clock3.png" alt="clock">
-            <h3>{{ current_survey.num_questions }} Questions</h3>
-        </div>
-
-        <div class='survey-icons' id='survey-reward'>
-            <img class='time-points-icon' src="\static\images\star6.png" alt="points">
-            <h3>{{ current_survey.point_value }} Points</h3>
-        </div>
-        
-    </div>
-
+		<div class="survey-icons" id="survey-reward">
+			<img
+				class="time-points-icon"
+				src="\static\images\star6.png"
+				alt="points"
+			/>
+			<h3>{{ current_survey.point_value }} Points</h3>
+		</div>
+	</div>
 </div>
-    <div class='page-box-main-content' id='admin-page'>
-        {% for question in current_survey.questions %}
-        <div class='page-box-tile'>
-            <h2>{{ question.question}}</h2>
-            <table class='home-table'>
-                <thead>
-                    <td>Response</td>
-                    <td>Age</td>
-                    <td>Gender</td>
-                    <td>Race</td>
-                    <td>Region</td>
-                    <td>Panelist ID</td>
-                </thead>
-                
-                {% for response in question.responses %}
-                <tr>
-                    <td>{{ response.response }}</td>
-                    <td>{{ response.response_panelist.get_age() }}</td>
-                    <td>{{ response.response_panelist.gender }}</td>
-                    <td>{{ response.response_panelist.race }}</td>	
-                    <td>{{ response.response_panelist.region }}</td>
-                    <td>{{ response.response_panelist.panelist_id }}</td>
-                </tr>
-                {% endfor %}
-            </table>
+<div class="page-box-main-content" id="admin-page">
+	{% for question in current_survey.questions %}
+	<div class="page-box-tile">
+		<h2>{{ question.question}}</h2>
+		<table class="home-table">
+			<thead>
+				<td>Response</td>
+				<td>Age</td>
+				<td>Gender</td>
+				<td>Race</td>
+				<td>Region</td>
+				<td>Panelist ID</td>
+			</thead>
 
-        </div>
-        {% endfor %}
-    </div>
+			{% for response in question.responses %}
+			<tr>
+				<td>{{ response.response }}</td>
+				<td>{{ response.response_panelist.get_age() }}</td>
+				<td>{{ response.response_panelist.gender }}</td>
+				<td>{{ response.response_panelist.race }}</td>
+				<td>{{ response.response_panelist.region }}</td>
+				<td>{{ response.response_panelist.panelist_id }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+	{% endfor %}
+</div>
 
 {% endblock %}

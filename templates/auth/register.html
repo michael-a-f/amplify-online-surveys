@@ -1,57 +1,49 @@
-{% extends 'auth/auth_base.html' %}
-
-{% block head %}
+{% extends 'auth/auth_base.html' %} {% block head %}
 <title>Register - AMPLIFY</title>
-{% endblock %}
+{% endblock %} {% block body %}
 
-{% block body %}
+<div class="register-login-box" id="register-box">
+	<div class="steps">
+		<h5 class="box-step-text">Step 1: Create Account</h5>
+		<h5 class="box-step-text" id="lighter">Step 2: About Me</h5>
+	</div>
 
+	<div class="box-title">
+		<h4>Register</h4>
+	</div>
 
-  <div class='register-login-box' id='register-box'>
-    <div class='steps'>
-      <h5 class='box-step-text'>Step 1: Create Account</h5>
-      <h5 class='box-step-text' id='lighter'>Step 2: About Me</h5>
-    </div>
-    
-    <div class='box-title'>
-      <h4>Register</h4>
-    </div>
+	<form class="register-login-form" id="register-form" method="POST">
+		<div class="error-box">
+			{% if form.errors %}
+			<ul class="errors">
+				{% for field_name, field_errors in form.errors|dictsort if field_errors
+				%} {% for error in field_errors %}
+				<li>{{ form[field_name].label }}: {{ error }}</li>
+				{% endfor %} {% endfor %}
+			</ul>
+			{% endif %}
+		</div>
 
+		<div class="inputs">
+			<div class="input-point">
+				{{ form.email.label }} {{ form.email(class="input-bar") }}
+			</div>
 
-    <form class='register-login-form' id='register-form' method="POST">
+			<div class="input-point">
+				{{ form.password.label }} {{ form.password(class="input-bar") }}
+			</div>
 
-      <div class='error-box'>
-        {% if form.errors %}
-          <ul class="errors">
-            {% for field_name, field_errors in form.errors|dictsort if field_errors %}
-                {% for error in field_errors %}
-                  <li>{{ form[field_name].label }}: {{ error }}</li>
-                {% endfor %}
-            {% endfor %}
-          </ul>
-        {% endif %}
-      </div>
-      
-      <div class='inputs'>
-        <div class='input-point'>
-          {{ form.email.label }}
-          {{ form.email(class="input-bar") }}
-        </div>
-  
-        <div class='input-point'>
-          {{ form.password.label }}
-          {{ form.password(class="input-bar") }}
-        </div>
-  
-        <div class='input-point'>
-          {{ form.confirm_password.label }}
-          {{ form.confirm_password(class='input-bar') }}
-        </div>
-        <input class='register-login-button' type='submit' value='Create Account'>
-      </div>
-
-    </form>
-
-</div>   
+			<div class="input-point">
+				{{ form.confirm_password.label }} {{
+				form.confirm_password(class='input-bar') }}
+			</div>
+			<input
+				class="register-login-button"
+				type="submit"
+				value="Create Account"
+			/>
+		</div>
+	</form>
+</div>
 
 {% endblock %}

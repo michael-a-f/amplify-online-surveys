@@ -22,4 +22,6 @@ def admin():
     answers = Answer.query.all()
     responses = Response.query.all()
 
-    return render_template('admin/admintables.html', panelists=panelists, surveys=surveys, genders=genders, races=races, regions=regions, questions=questions, answers=answers, responses=responses)
+    return render_template('admin/admintables.html', 
+        panelists=panelists, surveys=surveys, genders=genders, races=races,
+        regions=regions, questions=questions, answers=answers, responses=responses)

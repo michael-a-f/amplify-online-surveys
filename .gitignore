@@ -1,2 +1,6 @@
-__pycache__
-config
+__pycache__/
+config.py
+Procfile
+devops.py
+.vscode
+admin/

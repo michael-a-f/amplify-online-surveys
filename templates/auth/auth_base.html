@@ -1,43 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type='text/css' href="/static/css/auth.css"/>
-    <link rel="icon" href="\static\images\talking head.png">
-    {% block head %}{% endblock %}
-</head>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<link rel="stylesheet" type="text/css" href="/static/css/auth.css" />
+		<link rel="icon" href="\static\images\talking head.png" />
+		{% block head %}{% endblock %}
+	</head>
 
-<body class='index-register-login-page'>
-    <div class='header'>
-        <div class='header-logo'>
-            <img src="\static\images\a.png" alt="talking head">
-            <h4>AMPLIFY</h4>
-        </div>
+	<body class="index-register-login-page">
+		<div class="header">
+			<div class="header-logo">
+				<img src="\static\images\a.png" alt="talking head" />
+				<h4>AMPLIFY</h4>
+			</div>
 
-        <div class='toolbar'>
-            <ul>
-                <li><a href="/auth/register">Register</a></li>
-                <li><a href="/auth/login">Sign In</a></li>
-            </ul>
-        </div>
-    </div>
+			<div class="toolbar">
+				<ul>
+					<li><a href="/auth/register">Register</a></li>
+					<li><a href="/auth/login">Sign In</a></li>
+				</ul>
+			</div>
+		</div>
 
-    <div class='page-container'>
-        {% for message in get_flashed_messages() %}
-            <div class="flash">
-                <h2>{{ message }}</h2>
-            </div>
-        {% endfor %}
+		<div class="page-container">
+			{% for message in get_flashed_messages() %}
+			<div class="flash">
+				<h2>{{ message }}</h2>
+			</div>
+			{% endfor %} {% block body %}{% endblock %}
+		</div>
 
-        {% block body %}{% endblock %}
-    </div>
-
-    <div class='footer'>
-        <form action="/">
-            <input type="submit" value="Return to Home Page" />
-        </form>
-    </div>
-</body>
+		<div class="footer">
+			<form action="/">
+				<input type="submit" value="Return to Home Page" />
+			</form>
+		</div>
+	</body>
 </html>

@@ -1,47 +1,38 @@
-{% extends 'base.html' %}
-
-{% block head %}
+{% extends 'base.html' %} {% block head %}
 <title>Venmo - AMPLIFY</title>
-{% endblock %}
+{% endblock %} {% block body %}
 
-{% block body %}
+<div class="page-box-header">
+	<h1>Venmo Payment</h1>
+	<h2>Checkout</h2>
+</div>
 
-    <div class='page-box-header'>
-        <h1>Venmo Payment</h1>
-        <h2>Checkout</h2>
-    </div>
+<div class="page-box-main-content" id="incentives">
+	<div class="page-box-tile" id="amazon">
+		<div class="incentive">
+			<div class="incentive-img-box">
+				<img class="incentive-img" src="\static\images\venmo.png" alt="" />
+			</div>
 
-    <div class='page-box-main-content' id='incentives'>
-        
-        <div class='page-box-tile' id='amazon'>
-            <div class='incentive'>
-                <div class='incentive-img-box'>
-                    <img class='incentive-img' src="\static\images\venmo.png" alt="">
-                </div>
-                
-                <div class='incentive-title'>
-                    <h2>Venmo Payment</h2>
-                </div>
-            </div>
+			<div class="incentive-title">
+				<h2>Venmo Payment</h2>
+			</div>
+		</div>
 
-            <form class='incentive-form' method="POST">
-                <div class='incentive-form-title'>
-                    <h2>{{ form.amount.label }}</h2>
-                </div>
-                
-                <div class='incentive-form-amounts'>
-                    {% for amount in form.amount %}
-                    <div class='amount-option'>
-                        {{ amount }}
-                        {{ amount.label }}
-                    </div>
-                    {% endfor %}
-                </div>
-                
-                <input class='create-submit-button' type='submit' value='Redeem'>
-            </form>
-        </div>
+		<form class="incentive-form" method="POST">
+			<div class="incentive-form-title">
+				<h2>{{ form.amount.label }}</h2>
+			</div>
 
-    </div>
+			<div class="incentive-form-amounts">
+				{% for amount in form.amount %}
+				<div class="amount-option">{{ amount }} {{ amount.label }}</div>
+				{% endfor %}
+			</div>
+
+			<input class="create-submit-button" type="submit" value="Redeem" />
+		</form>
+	</div>
+</div>
 
 {% endblock %}
