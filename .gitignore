@@ -1,6 +1,4 @@
 __pycache__/
 config.py
-Procfile
-devops.py
+app/devops.py
 .vscode
-admin/
